@@ -1,0 +1,15 @@
+.navigation > :not(:first-child) {}
+.navigation > :not(:first-child) > a::before {
+    content: "";
+    display: flex;
+    width: 15px;
+    height: 3px;
+    border-radius: 1px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    background-color: #9ca3af;
+}
+
+.navigation > li > a.active {
+    color: #9ca3af;
+}

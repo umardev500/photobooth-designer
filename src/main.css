@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media print {
+    @page {
+        size: 400px calc(550px + 45px);
+    }
+}
+
+:root {
+    --thumb-color: #3b82f6;
+    --slider-width: 500px;
+    --slider-height: 10px;
+    --thumb-size: 25px;
+}
+
+body {
+    overflow: hidden;
+}
+
+/* frame */
+
+.delete-button {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.delete-button:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.drawing-area {
+    display: none !;
+    background-color: green !important;
+}
+
+.image-list>* {
+    /* padding: 1px; */
+    background-color: rgba(255, 255, 255, .3);
+    width: calc(50% - 0.5rem) !important;
+}
+
+/* slider */
+.slider-range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: var(--slider-height);
+    background-color: #64748b;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 10px;
+}
+
+.slider-range:hover {
+    opacity: 1;
+}
+
+.slider-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    background-color: var(--thumb-color);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.slider-range::-moz-range-thumb {
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    background-color: var(--thumb-color);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* rotate slider */
+.rotate-slider {
+    /* width: var(--slider-width); */
+    /* bottom: calc(0px - var(--slider-height) / 2); */
+    bottom: -70px;
+}
+
+.rotate-text {
+    top: calc(100% + var(--slider-height));
+    left: 1rem;
+}
+
+/* right slider / zoom slider */
+.zoom-slider {
+    transform: rotate(90deg);
+    width: var(--slider-width);
+    /* left: calc(100% - ((var(--slider-width) / 2) + (var(--slider-height) / 2))); */
+    /* position: absolute;  */
+    left: calc(100% - (var(--slider-width) / 2) + 70px);
+}
+
+.zoom-text {
+    transform: rotate(-90deg);
+    bottom: calc(100% + var(--slider-height) + 1.5rem);
+}
+
+/* font */
+.lobster {
+    font-family: "lobster two";
+}
+
+.roboto {
+    font-family: "roboto";
+}
+
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(80px);
+}
+
+.preview-image {
+    width: 400px;
+    height: 550px;
+}
