@@ -148,12 +148,12 @@ export const MainContent: React.FC = () => {
                         {/* rotate */}
                         <div className="absolute bottom-0 left-0 right-0 rotate-slider">
                             <input id="rotation" ref={rotateRef} type="range" name="slider" className="slider-range" min="-180" max="180" defaultValue={0} />
-                            <div className="rotate-text lobster italic text-xl font-bold text-gray-700 absolute">Rotate</div>
+                            <div className="rotate-text roboto font-medium text-gray-700 absolute">Rotate</div>
                         </div>
                         {/* zoom */}
                         <div className="absolute z-10 zoom-slider flex justify-center">
                             <input type="range" name="slider" id="zoom" className="slider-range" min="0" max="100" defaultValue={0} />
-                            <div className="zoom-text lobster italic text-xl font-bold text-gray-700 absolute">Zoom</div>
+                            <div className="zoom-text roboto font-medium text-gray-700 absolute">Zoom</div>
                         </div>
                     </>
                 ) : null}
