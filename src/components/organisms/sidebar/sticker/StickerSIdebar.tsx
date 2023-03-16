@@ -64,7 +64,7 @@ export const StickerSidebar: React.FC = () => {
                                   <img data-type="sticker" className="w-4/5 object-contain rounded-sm" draggable src={val} alt="image-list" />
                               </div>
                           ))
-                        : [...Array(50)].map((_, i) => (
+                        : [...Array(15)].map((_, i) => (
                               <div key={i} className="w-full !bg-slate-700 h-36 flex justify-center sm:w-1/2">
                                   <img data-type="sticker" className="w-4/5 object-contain rounded-sm" draggable src="sticker/flower.png" alt="image-list" />
                               </div>
