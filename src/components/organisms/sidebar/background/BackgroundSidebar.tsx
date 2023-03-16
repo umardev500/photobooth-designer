@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { SketchPicker, TwitterPicker, type ColorResult } from 'react-color'
+import { SketchPicker, type ColorResult } from 'react-color'
 import { AppContext, type AppContextData } from '../../../../context'
 
 export const BackgroundSidebar: React.FC = () => {
@@ -83,22 +83,6 @@ export const BackgroundSidebar: React.FC = () => {
                           ))}
                 </div>
             </div>
-
-            {/* <div className="flex flex-col absolute image-scroll overflow-y-scroll bottom-4 left-4 right-4 top-64 flex-wrap gap-4 mt-8">
-                <div className="image-list gap-4 w-full flex flex-wrap min-w-full">
-                    {images.length > 0
-                        ? images.map((val, i) => (
-                              <div key={i} className="w-full sm:w-1/2">
-                                  <img className="border border-gray-600 h-40 w-full object-cover rounded-sm" draggable src={val} alt="image-list" />
-                              </div>
-                          ))
-                        : [...Array(5)].map((_, i) => (
-                              <div key={i} className="w-full sm:w-1/2">
-                                  <img className="border border-gray-600 h-40 w-full object-cover rounded-sm" draggable src="flower.png" alt="image-list" />
-                              </div>
-                          ))}
-                </div>
-            </div> */}
         </div>
     )
 }
