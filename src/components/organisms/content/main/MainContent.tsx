@@ -152,7 +152,7 @@ export const MainContent: React.FC = () => {
                         </div>
                         {/* zoom */}
                         <div className="absolute z-10 zoom-slider flex justify-center">
-                            <input type="range" name="slider" id="zoom" className="slider-range" min="0" max="5" step={0.1} defaultValue={0} />
+                            <input type="range" name="slider" id="zoom" className="slider-range" min="0" max="100" defaultValue={0} />
                             <div className="zoom-text lobster italic text-xl font-bold text-gray-700 absolute">Zoom</div>
                         </div>
                     </>

@@ -30,7 +30,9 @@ export const DrawImage = (canvas: fabric.Canvas, theImage: HTMLImageElement, w: 
         let newScale = scaleFactor
         let prevValue = parseFloat(zoom.value)
         zoom.addEventListener('input', () => {
-            const value = parseFloat(zoom.value)
+            let value = parseFloat(zoom.value)
+            value = value / 100
+
             if (value < prevValue) {
                 newScale -= Math.abs(value - prevValue) // decrease newScale by difference between current and previous value
             } else {
