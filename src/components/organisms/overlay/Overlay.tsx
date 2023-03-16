@@ -12,10 +12,10 @@ export const Overlay: React.FC = () => {
         const handleWheel = (e: WheelEvent) => {
             if (e.deltaY < 0) {
                 // user scrolled up
-                wheel += 20
+                wheel += 8
             } else if (e.deltaY > 0 && wheel > 1) {
                 // user scrolled down
-                wheel -= 20
+                wheel -= 8
             }
 
             wheel = parseFloat(wheel.toFixed(2))

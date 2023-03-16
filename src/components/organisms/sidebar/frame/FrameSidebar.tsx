@@ -63,7 +63,7 @@ export const FrameSidebar: React.FC = () => {
 
             <div className="flex-1 mb-4 images-container overflow-y-auto">
                 <div className="image-list gap-4 flex flex-wrap">
-                    {[...Array(30)].map((val, i) => (
+                    {context.images.map((val, i) => (
                         <div key={i} className="w-full sm:w-1/2">
                             <img
                                 onClick={() => {
@@ -72,7 +72,7 @@ export const FrameSidebar: React.FC = () => {
                                 data-type="main"
                                 className="border border-gray-600 h-40 w-full object-cover rounded-sm"
                                 draggable
-                                src={'flower.png'}
+                                src={val}
                                 alt="image-list"
                             />
                         </div>
