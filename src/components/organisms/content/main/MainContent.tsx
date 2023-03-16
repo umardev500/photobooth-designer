@@ -194,7 +194,7 @@ export const MainContent: React.FC = () => {
                     </div>
                     <div className="absolute flex items-center top-10 left-10 cursor-pointer">
                         <div onClick={handleBack} className="text-slate-500 hover:text-slate-600">
-                            <svg width="50" height="50" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="35" height="35" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M8.77234 5.43585L3.20817 11L8.77234 16.5642M18.7915 11H3.364"
                                     stroke="currentColor"
