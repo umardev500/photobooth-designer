@@ -1,7 +1,7 @@
 import { fabric } from 'fabric'
 import { useContext, useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { useLocation, useMatch, useNavigate } from 'react-router-dom'
+import { useMatch, useNavigate } from 'react-router-dom'
 import { useReactToPrint } from 'react-to-print'
 import { AppContext, type AppContextData } from '../../../../context'
 import { Arrow } from '../../../atoms'

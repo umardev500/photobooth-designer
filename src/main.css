@@ -34,7 +34,7 @@ body {
     background-color: green !important;
 }
 
-.image-scroll::-webkit-scrollbar {
+.images-container::-webkit-scrollbar {
     width: 0px;
 }
 
