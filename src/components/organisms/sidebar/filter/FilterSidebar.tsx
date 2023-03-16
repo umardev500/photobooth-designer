@@ -20,9 +20,7 @@ export const FilterSidebar: React.FC = () => {
 
             <div className="flex mb-4 justify-end mt-1.5">
                 <input ref={inputRef} className="hidden" type="file" id="file-input" multiple accept="image/*" />
-                <button style={{ fontFamily: 'lobster two' }} className="text-xl w-fulls bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded font-medium">
-                    Custom Filter
-                </button>
+                <button className="text-base roboto bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded font-medium">Custom Filter</button>
             </div>
 
             <div className="flex flex-wrap gap-4 image-list mt-8">

@@ -54,30 +54,28 @@ export const FrameSidebar: React.FC = () => {
 
             <div className="flex mb-4 justify-end mt-1.5">
                 <input ref={inputRef} className="hidden" type="file" id="file-input" multiple accept="image/*" />
-                <button
-                    style={{ fontFamily: 'lobster two' }}
-                    onClick={handleOpen}
-                    className="text-xl w-fulls bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded font-medium"
-                >
+                <button onClick={handleOpen} className="text-base roboto bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded font-medium">
                     Select Folder
                 </button>
             </div>
 
-            <div className="flex flex-wrap gap-4 image-list mt-8">
-                {context.images.map((val, i) => (
-                    <div key={i} className="w-full sm:w-1/2">
-                        <img
-                            onClick={() => {
-                                handleClick(i)
-                            }}
-                            data-type="main"
-                            className="border border-gray-600 h-40 w-full object-cover rounded-sm"
-                            draggable
-                            src={val}
-                            alt="image-list"
-                        />
-                    </div>
-                ))}
+            <div className="flex flex-col absolute image-scroll overflow-y-scroll bottom-4 left-4 right-4 top-36 flex-wrap gap-4 mt-8">
+                <div className="image-list gap-4 w-full flex flex-wrap min-w-full">
+                    {[...Array(30)].map((val, i) => (
+                        <div key={i} className="w-full sm:w-1/2">
+                            <img
+                                onClick={() => {
+                                    handleClick(i)
+                                }}
+                                data-type="main"
+                                className="border border-gray-600 h-40 w-full object-cover rounded-sm"
+                                draggable
+                                src={'flower.png'}
+                                alt="image-list"
+                            />
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

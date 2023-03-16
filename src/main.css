@@ -34,6 +34,10 @@ body {
     background-color: green !important;
 }
 
+.image-scroll::-webkit-scrollbar {
+    width: 0px;
+}
+
 .image-list>* {
     /* padding: 1px; */
     background-color: rgba(255, 255, 255, .3);

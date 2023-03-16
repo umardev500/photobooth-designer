@@ -7,13 +7,14 @@ export const DrawImage = (canvas: fabric.Canvas, theImage: HTMLImageElement, w: 
     const scaleY = h / imgH
     const scaleFactor = Math.max(scaleX, scaleY)
 
-    const offset = Math.round((w - imgW) / 2)
-    img.left = offset
+    img.scale(scaleFactor)
+    const scaledW = imgW * scaleFactor
+    const xOffset = Math.min((w - scaledW) / 2, 0)
+    img.left = xOffset
 
     img.set({ hasBorders: false, hasControls: false })
 
     canvas.add(img)
-    canvas.renderAll()
 
     // rotation
     const rotation = document.querySelector('#rotation') as HTMLInputElement

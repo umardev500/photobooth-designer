@@ -49,27 +49,25 @@ export const StickerSidebar: React.FC = () => {
 
             <div className="flex mb-4 justify-end mt-1.5">
                 <input ref={inputRef} className="hidden" type="file" id="file-input" multiple accept="image/*" />
-                <button
-                    style={{ fontFamily: 'lobster two' }}
-                    onClick={handleOpen}
-                    className="text-xl w-fulls bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded font-medium"
-                >
+                <button onClick={handleOpen} className="text-base roboto bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded font-medium">
                     Select Folder
                 </button>
             </div>
 
-            <div className="flex flex-wrap gap-4 image-list mt-8">
-                {context.stickers.length > 0
-                    ? context.stickers.map((val, i) => (
-                          <div key={i} className="w-full !bg-slate-700 h-36 flex justify-center sm:w-1/2">
-                              <img data-type="sticker" className="w-4/5 object-contain rounded-sm" draggable src={val} alt="image-list" />
-                          </div>
-                      ))
-                    : [...Array(5)].map((_, i) => (
-                          <div key={i} className="w-full !bg-slate-700 h-36 flex justify-center sm:w-1/2">
-                              <img data-type="sticker" className="w-4/5 object-contain rounded-sm" draggable src="sticker/flower.png" alt="image-list" />
-                          </div>
-                      ))}
+            <div className="flex flex-col absolute image-scroll overflow-y-scroll bottom-4 left-4 right-4 top-36 flex-wrap gap-4 mt-8">
+                <div className="image-list gap-4 w-full flex flex-wrap min-w-full">
+                    {context.stickers.length > 0
+                        ? context.stickers.map((val, i) => (
+                              <div key={i} className="w-full !bg-slate-700 h-36 flex justify-center sm:w-1/2">
+                                  <img data-type="sticker" className="w-4/5 object-contain rounded-sm" draggable src={val} alt="image-list" />
+                              </div>
+                          ))
+                        : [...Array(50)].map((_, i) => (
+                              <div key={i} className="w-full !bg-slate-700 h-36 flex justify-center sm:w-1/2">
+                                  <img data-type="sticker" className="w-4/5 object-contain rounded-sm" draggable src="sticker/flower.png" alt="image-list" />
+                              </div>
+                          ))}
+                </div>
             </div>
         </div>
     )

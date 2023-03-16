@@ -1,7 +1,7 @@
 import { fabric } from 'fabric'
 import { useContext, useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { useMatch } from 'react-router-dom'
+import { useLocation, useMatch, useNavigate } from 'react-router-dom'
 import { useReactToPrint } from 'react-to-print'
 import { AppContext, type AppContextData } from '../../../../context'
 import { Arrow } from '../../../atoms'
@@ -130,6 +130,10 @@ export const MainContent: React.FC = () => {
         }
     }
 
+    const handleBack = () => {
+        //
+    }
+
     return (
         <div className={`relative bg-slate-300 ${!isPreview ? 'ml-80' : ''} p-6 h-screen flex justify-center items-center`}>
             <div className={`relative flex justify-center items-center mb-32 `}>
@@ -188,7 +192,7 @@ export const MainContent: React.FC = () => {
                         </div>
                     </div>
                     <div className="absolute flex items-center top-10 left-10 cursor-pointer">
-                        <div className="text-slate-500 hover:text-slate-600">
+                        <div onClick={handleBack} className="text-slate-500 hover:text-slate-600">
                             <svg width="50" height="50" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M8.77234 5.43585L3.20817 11L8.77234 16.5642M18.7915 11H3.364"
