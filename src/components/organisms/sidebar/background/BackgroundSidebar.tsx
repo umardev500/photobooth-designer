@@ -57,7 +57,9 @@ export const BackgroundSidebar: React.FC = () => {
                 {/* Color picker */}
                 <div className="">
                     {/* <TwitterPicker color={context.color} onChangeComplete={handleChangeColor} /> */}
-                    <SketchPicker color={context.color} onChangeComplete={handleChangeColor} />
+                    <div className="flex flex-wrap">
+                        <SketchPicker className="w-full flex-1" color={context.color} onChange={handleChangeColor} />
+                    </div>
                 </div>
 
                 <div className="flex mb-4 justify-end mt-6">
