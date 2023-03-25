@@ -46,7 +46,7 @@ export const FrameSidebar: React.FC = () => {
     }
 
     return (
-        <div className="w-80 bg-gray-800 fixed flex flex-col left-0 top-0 bottom-0 px-6">
+        <div className="w-80 bg-gray-800 fixed flex flex-col left-0 top-0 bottom-0 pl-6">
             <div>
                 <div className="h-24 flex justify-center py-3">
                     {/* <img className="w-16" src="vite.svg" alt="" /> */}
@@ -61,7 +61,7 @@ export const FrameSidebar: React.FC = () => {
                 </div>
             </div>
 
-            <div className="flex-1 mb-4 images-container overflow-y-auto">
+            <div className="flex-1 mb-4 images-container overflow-y-auto pr-6">
                 <div className="image-list gap-4 flex flex-wrap">
                     {context.images.map((val, i) => (
                         <div key={i} className="w-full sm:w-1/2">
