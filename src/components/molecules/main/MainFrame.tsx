@@ -83,6 +83,11 @@ const drawFrameCanvas = (canvas: fabric.Canvas) => {
         img.set({
             top: canvasH - (scaledImgH + imageToFrame),
             left: canvasW / 2 - scaledImgW / 2,
+            lockMovementX: true,
+            lockMovementY: true,
+            hasControls: false,
+            hasBorders: false,
+            selectable: false,
         })
 
         canvas.add(img)
