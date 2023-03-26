@@ -49,11 +49,15 @@ export const MainContent: React.FC = () => {
             drawing?.clear()
 
             toast
-                .promise(doDone(), {
-                    error: 'Something went wrong',
-                    loading: 'Loading...',
-                    success: 'All done!',
-                })
+                .promise(
+                    doDone(),
+                    {
+                        error: 'Something went wrong',
+                        loading: 'Loading...',
+                        success: 'All done!',
+                    },
+                    { className: 'roboto' }
+                )
                 .catch((err) => {
                     console.log(err)
                 })
