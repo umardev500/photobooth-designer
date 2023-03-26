@@ -34,7 +34,7 @@ body {
     background-color: green !important;
 }
 
-/* .images-container::-webkit-scrollbar {} */
+.images-container::-webkit-scrollbar {}
 
 .image-list>* {
     /* padding: 1px; */
