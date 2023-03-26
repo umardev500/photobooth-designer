@@ -161,7 +161,7 @@ export const MainContent: React.FC = () => {
 
             {isPreview ? (
                 <>
-                    {/* <img className="" ref={componentRef} id="img-result" src={result} alt="result" /> */}
+                    <img className="absolute -z-20" ref={componentRef} id="img-result" src={result} alt="result" />
                     <div className="absolute bottom-16 flex items-center justify-center gap-10">
                         {/* Done */}
                         <div onClick={handleDone} id="done" className="flex justify-center items-center flex-col cursor-pointer">
