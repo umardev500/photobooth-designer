@@ -9,6 +9,7 @@ export const FrameSidebar: React.FC = () => {
     const imageContainerRef = useRef<HTMLDivElement>(null)
     const context = useContext(AppContext) as AppContextData
     const [containerHeight, setContainerHeight] = useState<number>(150)
+    const loadingRef = useRef('')
 
     const handleOpen = useCallback(() => {
         const input = inputRef.current
@@ -21,6 +22,8 @@ export const FrameSidebar: React.FC = () => {
         const input = inputRef.current as HTMLInputElement
         if (input != null) {
             input?.addEventListener('change', (e: Event) => {
+                const id = toast.loading('Loading...', { className: 'roboto' })
+                loadingRef.current = id
                 const files = (e.target as HTMLInputElement).files as FileList
                 const filesLen = files?.length ?? 0
 
@@ -37,7 +40,6 @@ export const FrameSidebar: React.FC = () => {
 
                             if (dataUrls.length === filesLen) {
                                 context.setImages(dataUrls)
-                                toast.success('Image loaded!')
                             }
                         }
                     }
@@ -45,6 +47,14 @@ export const FrameSidebar: React.FC = () => {
             })
         }
     }, [])
+
+    useEffect(() => {
+        toast.dismiss(loadingRef.current)
+        const id = toast.success('Image loaded!', { className: 'roboto' })
+        return () => {
+            toast.remove(id)
+        }
+    })
 
     const handleClick = (index: number) => {
         context.setOverlayToggle(true)
