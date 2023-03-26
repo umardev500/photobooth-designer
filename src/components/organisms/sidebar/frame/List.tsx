@@ -12,20 +12,22 @@ export const List = React.memo(({ containerHeight, images, imagesFull, onClick }
     if (containerHeight > 0) {
         const Row = () => (
             <div className="grid grid-cols-2 gap-4 pr-2.5">
-                {images.map((val, i) => (
-                    <img
-                        key={i}
-                        onClick={() => {
-                            onClick(i)
-                        }}
-                        data-url={imagesFull[i]}
-                        data-type="main"
-                        className="border bg-gray-700 border-gray-600 h-40 w-full object-cover rounded-sm"
-                        draggable
-                        src={val}
-                        alt="image-list"
-                    />
-                ))}
+                {images.map((val, i) => {
+                    return (
+                        <img
+                            key={i}
+                            onClick={() => {
+                                onClick(i)
+                            }}
+                            data-url={imagesFull[i]}
+                            data-type="main"
+                            className="border bg-gray-700 border-gray-600 h-40 w-full object-cover rounded-sm"
+                            draggable
+                            src={val + `?${Date.now()}`}
+                            alt="image-list"
+                        />
+                    )
+                })}
             </div>
         )
 

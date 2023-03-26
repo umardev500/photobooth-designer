@@ -6,7 +6,7 @@ fabric.textureSize = 8192
 
 const drawImageOnCanvas = (canvas: fabric.Canvas, w: number, h: number, source: string): fabric.Canvas => {
     const defaultImage = new Image()
-    defaultImage.src = source
+    defaultImage.src = source + `?${Date.now()}`
 
     let mainImage: fabric.Image
     defaultImage.onload = () => {
@@ -35,9 +35,11 @@ const drawImageOnCanvas = (canvas: fabric.Canvas, w: number, h: number, source: 
 
         if (imgType === 'main') {
             canvas.clear()
-            const img = DrawImage(canvas, newImage, w, h)
+            newImage.onload = () => {
+                const img = DrawImage(canvas, newImage, w, h)
 
-            mainImage = img
+                mainImage = img
+            }
         }
     })
     const deleteBtn = document.querySelector('#delete')
@@ -114,13 +116,13 @@ export const MainFrame: React.FC = () => {
         })
 
         const currentImageIndex = context.currentImage
-        const currentImageLink = context.images[currentImageIndex]
+        const currentImageLink = context.imagesFull[currentImageIndex]
 
         drawImageOnCanvas(canvas, imgW, imgH, currentImageLink)
         context.setDrawingCanvas(canvas)
 
         return () => {
-            canvas.dispose()
+            canvas.clear()
         }
     }, [context.currentImage, context.images])
 

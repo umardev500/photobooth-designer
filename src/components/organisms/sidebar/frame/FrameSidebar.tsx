@@ -9,7 +9,7 @@ export const FrameSidebar = React.memo(() => {
     const imageContainerRef = useRef<HTMLDivElement>(null)
     const context = useContext(AppContext) as AppContextData
     const [containerHeight, setContainerHeight] = useState<number>(0)
-    const loadingRef = useRef('')
+    const [files, setFiles] = useState<FormData>()
 
     const handleOpen = useCallback(() => {
         const input = inputRef.current
@@ -22,57 +22,64 @@ export const FrameSidebar = React.memo(() => {
         const input = inputRef.current as HTMLInputElement
         if (input != null) {
             input?.addEventListener('change', (e: Event) => {
-                const id = toast.loading('Loading...', { className: 'roboto' })
-                loadingRef.current = id
+                // const id = toast.loading('Loading...', { className: 'roboto' })
+                // loadingRef.current = id
                 const files = (e.target as HTMLInputElement).files as FileList
                 const filesLen = files?.length ?? 0
-
+                const formData = new FormData()
                 if (filesLen > 0) {
-                    const dataUrls: string[] = []
-                    const dataUrlsFull: string[] = []
-                    const canvas = document.createElement('canvas')
-                    const ctx = canvas.getContext('2d')
                     for (let i = 0; i < filesLen; i++) {
-                        const file = files[i]
-                        const reader = new FileReader()
-                        reader.readAsDataURL(file)
-
-                        reader.onload = (eReader) => {
-                            const dataURL = eReader.target?.result as string
-                            const img = new Image()
-                            img.src = dataURL
-                            img.onload = () => {
-                                console.log('loaded')
-                                canvas.width = img.width
-                                canvas.height = img.height
-                                ctx?.clearRect(0, 0, canvas.width, canvas.height)
-                                ctx?.drawImage(img, 0, 0)
-                                const compressedDataURL = canvas.toDataURL('image/jpeg', 0.1)
-                                dataUrls.push(compressedDataURL)
-                                dataUrlsFull.push(dataURL)
-                                if (dataUrls.length === filesLen) {
-                                    context.setImages(dataUrls)
-                                    context.setImagesFull(dataUrlsFull)
-                                }
-                            }
-                        }
+                        formData.append('files', files[i])
                     }
                 }
+                setFiles(formData)
             })
         }
     }, [])
 
+    // fecth thumbnail
     useEffect(() => {
-        // console.log(worker)
-    }, [])
+        const formEntires = files?.entries()
 
-    useEffect(() => {
-        toast.dismiss(loadingRef.current)
-        const id = toast.success('Image loaded!', { className: 'roboto' })
-        return () => {
-            toast.remove(id)
+        for (const entry of formEntires ?? []) {
+            if (entry[1] !== undefined) {
+                const input = inputRef.current as HTMLInputElement
+                const filesSize = input.files?.length ?? 0
+                const doFetch = async () => {
+                    const target = 'http://localhost:4000/compress-thumbnail'
+                    try {
+                        const response = await fetch(target, {
+                            method: 'POST',
+                            body: files,
+                        })
+                        const data: string[][] = await response.json()
+                        context.setImages([])
+                        context.setImagesFull([])
+                        context.setImages(data[0])
+                        context.setImagesFull(data[1])
+                    } catch (err) {
+                        console.log('error', err)
+                    }
+                }
+
+                toast
+                    .promise(
+                        doFetch(),
+                        {
+                            loading: `Loading ${filesSize} files...`,
+                            success: 'Successfuly loaded!',
+                            error: 'Something went wrong',
+                        },
+                        { className: 'roboto' }
+                    )
+                    .catch((err) => {
+                        console.log(err)
+                    })
+
+                break
+            }
         }
-    }, [context.images.length])
+    }, [files])
 
     const handleClick = useCallback((index: number) => {
         // toast.loading('Loading...')

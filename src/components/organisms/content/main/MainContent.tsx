@@ -88,7 +88,7 @@ export const MainContent: React.FC = () => {
 
     const handleNextImage = () => {
         let currentImage = context.currentImage
-        const images = context.images
+        const images = context.imagesFull
         if (currentImage + 1 < images.length) {
             currentImage += 1
         }
@@ -101,7 +101,7 @@ export const MainContent: React.FC = () => {
 
     const handlePrevImage = () => {
         let currentImage = context.currentImage
-        const images = context.images
+        const images = context.imagesFull
         if (currentImage > 0) {
             currentImage -= 1
         }
