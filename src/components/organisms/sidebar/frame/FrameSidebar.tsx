@@ -1,14 +1,14 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { FixedSizeList } from 'react-window'
 import 'simplebar-react/dist/simplebar.min.css'
 import { AppContext, type AppContextData } from '../../../../context'
+import { List } from './List'
 
 export const FrameSidebar: React.FC = () => {
     const inputRef = useRef<HTMLInputElement>(null)
     const imageContainerRef = useRef<HTMLDivElement>(null)
     const context = useContext(AppContext) as AppContextData
-    const [containerHeight, setContainerHeight] = useState<number>(150)
+    const [containerHeight, setContainerHeight] = useState<number>(0)
     const loadingRef = useRef('')
 
     const handleOpen = useCallback(() => {
@@ -56,28 +56,11 @@ export const FrameSidebar: React.FC = () => {
         }
     })
 
-    const handleClick = (index: number) => {
+    const handleClick = useCallback((index: number) => {
+        // toast.loading('Loading...')
         context.setOverlayToggle(true)
         context.setCurrentPreview(index)
-    }
-
-    const Row = () => (
-        <div className="grid grid-cols-2 gap-4 pr-2.5">
-            {context.images.map((val, i) => (
-                <img
-                    key={i}
-                    onClick={() => {
-                        handleClick(i)
-                    }}
-                    data-type="main"
-                    className="border border-gray-600 h-40 w-full object-cover rounded-sm"
-                    draggable
-                    src={val}
-                    alt="image-list"
-                />
-            ))}
-        </div>
-    )
+    }, [])
 
     useEffect(() => {
         const container = imageContainerRef.current
@@ -102,28 +85,7 @@ export const FrameSidebar: React.FC = () => {
             </div>
 
             <div ref={imageContainerRef} className="flex-1 mb-4 images-container relative">
-                <FixedSizeList height={containerHeight} itemCount={1} itemSize={35} width={'100%'}>
-                    {Row}
-                </FixedSizeList>
-
-                {/* <SimpleBar style={{ left: 0, right: 24, position: 'absolute', bottom: 15, top: 0 }}> */}
-                {/* <div className="image-list gap-4 flex flex-wrap">
-                    {context.images.map((val, i) => (
-                        <div key={i} className="w-full sm:w-1/2">
-                            <img
-                                onClick={() => {
-                                    handleClick(i)
-                                }}
-                                data-type="main"
-                                className="border border-gray-600 h-40 w-full object-cover rounded-sm"
-                                draggable
-                                src={val}
-                                alt="image-list"
-                            />
-                        </div>
-                    ))}
-                </div> */}
-                {/* </SimpleBar> */}
+                <List images={context.images} onClick={handleClick} containerHeight={containerHeight} />
             </div>
         </div>
     )
