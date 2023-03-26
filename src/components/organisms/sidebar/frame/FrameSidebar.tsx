@@ -54,7 +54,7 @@ export const FrameSidebar = React.memo(() => {
         return () => {
             toast.remove(id)
         }
-    })
+    }, [context.images.length])
 
     const handleClick = useCallback((index: number) => {
         // toast.loading('Loading...')
