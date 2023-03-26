@@ -62,13 +62,13 @@ export const Overlay: React.FC = () => {
     }
 
     const currentPreviewIndex = context.currentPreview
-    const currentImage = context.images[currentPreviewIndex]
+    const currentImage = context.imagesFull[currentPreviewIndex]
 
     useEffect(() => {
         const container = imageContainerRef.current
         if (container != null) {
             const img = new Image()
-            img.src = currentImage
+            img.src = currentImage + `?${Date.now()}`
             img.className = 'object-cover preview-image'
             img.onload = () => {
                 setTimeout(() => {
@@ -80,7 +80,7 @@ export const Overlay: React.FC = () => {
     }, [currentImage])
 
     return (
-        <div className="absolute flex justify-center top-0 right-0 bottom-0 left-0 z-10">
+        <div className="absolute flex justify-center top-0 right-0 bottom-0 left-0 z-50">
             <div onClick={handleClose} className="absolute overlay top-0 right-0 bottom-0 left-0 -z-20"></div>
             <div className="z-20 m-auto flex items-center">
                 <Arrow onClick={handlePrev} left className="mr-6 text-gray-400 hover:text-gray-500 cursor-pointer" />
