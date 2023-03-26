@@ -18,7 +18,6 @@ const drawImageOnCanvas = (canvas: fabric.Canvas, w: number, h: number, source: 
     canvas.on('drop', function (e: fabric.IEvent<MouseEvent>) {
         const event = e.e as DragEvent
         const theDragImageStr = event.dataTransfer?.getData('text/html') ?? ''
-        console.log(theDragImageStr)
         const tempDiv = document.createElement('div')
         tempDiv.innerHTML = theDragImageStr
         const theDrageImageElem = tempDiv.querySelector('img') as HTMLImageElement

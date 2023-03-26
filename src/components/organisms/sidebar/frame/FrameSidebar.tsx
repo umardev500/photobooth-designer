@@ -51,12 +51,11 @@ export const FrameSidebar: React.FC = () => {
         context.setCurrentPreview(index)
     }
 
-    console.log('RENDER SIDEBAR')
-
     const Row = () => (
         <div className="grid grid-cols-2 gap-4 pr-2.5">
             {context.images.map((val, i) => (
                 <img
+                    key={i}
                     onClick={() => {
                         handleClick(i)
                     }}
@@ -74,7 +73,6 @@ export const FrameSidebar: React.FC = () => {
         const container = imageContainerRef.current
         const height = container?.offsetHeight ?? 0
         setContainerHeight(height)
-        console.dir(height)
     }, [])
 
     return (
