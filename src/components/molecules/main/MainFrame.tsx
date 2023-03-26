@@ -6,7 +6,7 @@ fabric.textureSize = 8192
 
 const drawImageOnCanvas = (canvas: fabric.Canvas, w: number, h: number, source: string): fabric.Canvas => {
     const defaultImage = new Image()
-    defaultImage.src = 'uploads/real-2.jpg' + `?${Date.now()}`
+    defaultImage.src = source + `?${Date.now()}`
 
     let mainImage: fabric.Image
     defaultImage.onload = () => {
