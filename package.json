@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "postinstall": "patch-package",
-    "be": "concurrently \"tsc --watch --project backend/tsconfig.json\" \"nodemon backend/dist/main.js\""
+    "start": "concurrently \"yarn dev\" \"tsc --watch --project backend/tsconfig.json\" \"nodemon backend/dist/main.js\""
   },
   "dependencies": {
     "@types/cors": "^2.8.13",

@@ -122,7 +122,7 @@ export const MainFrame: React.FC = () => {
         context.setDrawingCanvas(canvas)
 
         return () => {
-            canvas.clear()
+            canvas.dispose()
         }
     }, [context.currentImage, context.images])
 
