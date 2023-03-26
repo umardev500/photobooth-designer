@@ -4,6 +4,7 @@ import { Arrow } from '../../atoms'
 
 export const Overlay: React.FC = () => {
     const previewImgRef = useRef<HTMLImageElement>(null)
+    const imageContainerRef = useRef<HTMLDivElement>(null)
     const context = useContext(AppContext) as AppContextData
 
     useEffect(() => {
@@ -63,14 +64,31 @@ export const Overlay: React.FC = () => {
     const currentPreviewIndex = context.currentPreview
     const currentImage = context.images[currentPreviewIndex]
 
+    useEffect(() => {
+        const container = imageContainerRef.current
+        if (container != null) {
+            const img = new Image()
+            img.src = currentImage
+            img.className = 'object-cover preview-image'
+            img.onload = () => {
+                setTimeout(() => {
+                    container.innerText = ''
+                    container.appendChild(img)
+                }, 100)
+            }
+        }
+    }, [currentImage])
+
     return (
         <div className="absolute flex justify-center top-0 right-0 bottom-0 left-0 z-10">
+            <div onClick={handleClose} className="absolute overlay top-0 right-0 bottom-0 left-0 -z-20"></div>
             <div className="z-20 m-auto flex items-center">
                 <Arrow onClick={handlePrev} left className="mr-6 text-gray-400 hover:text-gray-500 cursor-pointer" />
-                <img className="object-cover preview-image" ref={previewImgRef} id="preview-image" src={currentImage} alt="image" />
+                <div ref={imageContainerRef} className="text-white text-xl font-medium roboto">
+                    Loading...
+                </div>
                 <Arrow onClick={handleNext} className="ml-6 text-gray-400 hover:text-gray-500 cursor-pointer" />
             </div>
-            <div onClick={handleClose} className="absolute overlay top-0 right-0 bottom-0 left-0 -z-20"></div>
         </div>
     )
 }

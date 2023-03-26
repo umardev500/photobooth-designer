@@ -5,6 +5,7 @@ import { AppContext, type AppContextData } from '../context'
 
 export const Home: React.FC = () => {
     const context = useContext(AppContext) as AppContextData
+
     return (
         <>
             <FrameSidebar />

@@ -1,10 +1,10 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import 'simplebar-react/dist/simplebar.min.css'
 import { AppContext, type AppContextData } from '../../../../context'
 import { List } from './List'
 
-export const FrameSidebar: React.FC = () => {
+export const FrameSidebar = React.memo(() => {
     const inputRef = useRef<HTMLInputElement>(null)
     const imageContainerRef = useRef<HTMLDivElement>(null)
     const context = useContext(AppContext) as AppContextData
@@ -72,7 +72,6 @@ export const FrameSidebar: React.FC = () => {
         <div className="w-80 bg-gray-800 fixed flex flex-col left-0 top-0 bottom-0 pl-6">
             <div>
                 <div className="h-24 flex justify-center py-3">
-                    {/* <img className="w-16" src="vite.svg" alt="" /> */}
                     <img className="w-28 h-10 mt-4 object-contain" src="logo-white.png" alt="" />
                 </div>
 
@@ -89,4 +88,4 @@ export const FrameSidebar: React.FC = () => {
             </div>
         </div>
     )
-}
+})

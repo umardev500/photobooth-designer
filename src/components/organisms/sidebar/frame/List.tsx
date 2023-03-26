@@ -11,12 +11,6 @@ export const List = React.memo(({ containerHeight, images, onClick }: Props) => 
     if (containerHeight > 0) {
         console.log('render child')
 
-        const handleClick = () => {
-            // toast.loading('Loading...')
-            console.log('clicked')
-            // context.setOverlayToggle(true)
-        }
-
         const Row = () => (
             <div className="grid grid-cols-2 gap-4 pr-2.5">
                 {images.map((val, i) => (
