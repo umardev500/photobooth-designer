@@ -57,19 +57,20 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
     const [currentFilter, setCurrentFilter] = useState<number>(0)
     // const [images, setImages] = useState<string[]>(['sharp6.JPG'])
     const [imagesFull, setImagesFull] = useState<string[]>([])
-    const [images, setImages] = useState<string[]>([
-        'photo.jpg',
-        'sharp6.JPG',
-        'flower2.jpg',
-        'flower.png',
-        'flower3.jpg',
-        'flower4.jpg',
-        'flower5.jpg',
-        'sharp6.JPG',
-        'photo.jpg',
-        'flower2.jpg',
-        'flower.png',
-    ])
+    const [images, setImages] = useState<string[]>([])
+    // const [images, setImages] = useState<string[]>([
+    //     'photo.jpg',
+    //     'sharp6.JPG',
+    //     'flower2.jpg',
+    //     'flower.png',
+    //     'flower3.jpg',
+    //     'flower4.jpg',
+    //     'flower5.jpg',
+    //     'sharp6.JPG',
+    //     'photo.jpg',
+    //     'flower2.jpg',
+    //     'flower.png',
+    // ])
     const [currentImage, setCurrentImage] = useState<number>(0)
     const [currentPreview, setCurrentPreview] = useState<number>(0)
     const [overlayToggle, setOverlayToggle] = useState<boolean>(false)

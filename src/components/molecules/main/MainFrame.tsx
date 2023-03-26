@@ -6,7 +6,7 @@ fabric.textureSize = 8192
 
 const drawImageOnCanvas = (canvas: fabric.Canvas, w: number, h: number, source: string): fabric.Canvas => {
     const defaultImage = new Image()
-    defaultImage.src = source + `?${Date.now()}`
+    defaultImage.src = 'uploads/real-2.jpg' + `?${Date.now()}`
 
     let mainImage: fabric.Image
     defaultImage.onload = () => {
@@ -41,11 +41,6 @@ const drawImageOnCanvas = (canvas: fabric.Canvas, w: number, h: number, source: 
                 mainImage = img
             }
         }
-    })
-    const deleteBtn = document.querySelector('#delete')
-    deleteBtn?.addEventListener('click', (e) => {
-        canvas.clear()
-        canvas.renderAll()
     })
 
     return canvas
@@ -121,19 +116,34 @@ export const MainFrame: React.FC = () => {
         drawImageOnCanvas(canvas, imgW, imgH, currentImageLink)
         context.setDrawingCanvas(canvas)
 
-        return () => {
-            canvas.dispose()
-        }
-    }, [context.currentImage, context.images])
+        const deleteBtn = document.querySelector('#delete') as HTMLButtonElement
 
-    useEffect(() => {
-        const canvas = new fabric.Canvas('frame', {
+        // frame
+        const canvasFrame = new fabric.Canvas('frame', {
             // backgroundColor: '#1f2937',
             backgroundColor: '#fff',
         })
-        drawFrameCanvas(canvas)
-        context.setFrameCanvas(canvas)
-    }, [])
+        drawFrameCanvas(canvasFrame)
+        context.setFrameCanvas(canvasFrame)
+
+        const deleteHandler = (e: MouseEvent) => {
+            const drawedImage = canvasFrame.getObjects()[2]
+            if (drawedImage !== undefined) {
+                canvasFrame.remove(drawedImage)
+                const drawingContainer = drawingContainerRef.current
+                if (drawingContainer != null) drawingContainer.style.zIndex = '1'
+            }
+            canvas.clear()
+            canvas.renderAll()
+        }
+        deleteBtn.addEventListener('click', deleteHandler)
+
+        return () => {
+            deleteBtn.removeEventListener('click', deleteHandler)
+            canvas.dispose()
+            canvasFrame.dispose()
+        }
+    }, [context.currentImage, context.images])
 
     // listening for filter change
     useEffect(() => {
@@ -188,19 +198,19 @@ export const MainFrame: React.FC = () => {
         <>
             <div className="relative flex bg-green-200 px-4 justify-center" style={{ width: canvasWidth + frameXSpace, height: canvasHeight + (frameTopSpace + frameBottomSpace) }}>
                 <div ref={drawingContainerRef} className="relative" style={{ width: canvasWidth, height: canvasHeight, zIndex: 1, marginTop: frameTopSpace }}>
-                    <button id="delete" className="outline-none absolute z-20 right-8 top-8 delete-button">
-                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M30.625 8.72091C25.7688 8.23966 20.8833 7.99175 16.0125 7.99175C13.125 7.99175 10.2375 8.13758 7.35 8.42925L4.375 8.72091M12.3958 7.248L12.7167 5.33758C12.95 3.95216 13.125 2.91675 15.5896 2.91675H19.4104C21.875 2.91675 22.0646 4.0105 22.2833 5.35216L22.6042 7.248M27.4896 13.3292L26.5417 28.0147C26.3813 30.3042 26.25 32.0834 22.1813 32.0834H12.8188C8.75 32.0834 8.61875 30.3042 8.45833 28.0147L7.51042 13.3292M15.0646 24.0626H19.9208M13.8542 18.2292H21.1458"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    </button>
                     <canvas ref={drawingRef} id="drawing-area"></canvas>
                 </div>
+                <button id="delete" className="outline-none absolute z-20 right-8 top-8 delete-button">
+                    <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M30.625 8.72091C25.7688 8.23966 20.8833 7.99175 16.0125 7.99175C13.125 7.99175 10.2375 8.13758 7.35 8.42925L4.375 8.72091M12.3958 7.248L12.7167 5.33758C12.95 3.95216 13.125 2.91675 15.5896 2.91675H19.4104C21.875 2.91675 22.0646 4.0105 22.2833 5.35216L22.6042 7.248M27.4896 13.3292L26.5417 28.0147C26.3813 30.3042 26.25 32.0834 22.1813 32.0834H12.8188C8.75 32.0834 8.61875 30.3042 8.45833 28.0147L7.51042 13.3292M15.0646 24.0626H19.9208M13.8542 18.2292H21.1458"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </button>
                 <div className="absolute">
                     <canvas ref={frameRef} id="frame" width={canvasWidth + frameXSpace} height={canvasHeight + (frameTopSpace + frameBottomSpace)}></canvas>
                 </div>
