@@ -30,6 +30,8 @@ export const FrameSidebar = React.memo(() => {
                 if (filesLen > 0) {
                     const dataUrls: string[] = []
                     const dataUrlsFull: string[] = []
+                    const canvas = document.createElement('canvas')
+                    const ctx = canvas.getContext('2d')
                     for (let i = 0; i < filesLen; i++) {
                         const file = files[i]
                         const reader = new FileReader()
@@ -41,13 +43,11 @@ export const FrameSidebar = React.memo(() => {
                             img.src = dataURL
                             img.onload = () => {
                                 console.log('loaded')
-                                const canvas = document.createElement('canvas')
                                 canvas.width = img.width
                                 canvas.height = img.height
-                                canvas.style.backgroundColor = 'transparent'
-                                const ctx = canvas.getContext('2d')
+                                ctx?.clearRect(0, 0, canvas.width, canvas.height)
                                 ctx?.drawImage(img, 0, 0)
-                                const compressedDataURL = canvas.toDataURL('image/png', 0.1)
+                                const compressedDataURL = canvas.toDataURL('image/jpeg', 0.1)
                                 dataUrls.push(compressedDataURL)
                                 dataUrlsFull.push(dataURL)
                                 if (dataUrls.length === filesLen) {
@@ -60,6 +60,10 @@ export const FrameSidebar = React.memo(() => {
                 }
             })
         }
+    }, [])
+
+    useEffect(() => {
+        // console.log(worker)
     }, [])
 
     useEffect(() => {
