@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "26d71209-482a-47ac-b690-7a0d89f78a21",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:4000/compress-thumbnail",
+    "url": "http://localhost:4000/compress-thumbnail",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-03-26T17:58:54.959Z",
+    "modified": "2023-03-26T17:58:54.959Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]
