@@ -53,7 +53,7 @@ export const FrameSidebar: React.FC = () => {
                     <img className="w-28 h-10 mt-4 object-contain" src="logo-white.png" alt="" />
                 </div>
 
-                <div className="flex mb-4 justify-end mt-1.5">
+                <div className="flex mb-4 justify-end mt-1.5 pr-6">
                     <input ref={inputRef} className="hidden" type="file" id="file-input" multiple accept="image/*" />
                     <button onClick={handleOpen} className="text-base roboto bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded font-medium">
                         Select Folder
