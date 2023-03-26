@@ -29,6 +29,7 @@ export const FrameSidebar = React.memo(() => {
 
                 if (filesLen > 0) {
                     const dataUrls: string[] = []
+                    const dataUrlsFull: string[] = []
                     for (let i = 0; i < filesLen; i++) {
                         const file = files[i]
                         const reader = new FileReader()
@@ -36,10 +37,23 @@ export const FrameSidebar = React.memo(() => {
 
                         reader.onload = (eReader) => {
                             const dataURL = eReader.target?.result as string
-                            dataUrls.push(dataURL)
-
-                            if (dataUrls.length === filesLen) {
-                                context.setImages(dataUrls)
+                            const img = new Image()
+                            img.src = dataURL
+                            img.onload = () => {
+                                console.log('loaded')
+                                const canvas = document.createElement('canvas')
+                                canvas.width = img.width
+                                canvas.height = img.height
+                                canvas.style.backgroundColor = 'transparent'
+                                const ctx = canvas.getContext('2d')
+                                ctx?.drawImage(img, 0, 0)
+                                const compressedDataURL = canvas.toDataURL('image/png', 0.1)
+                                dataUrls.push(compressedDataURL)
+                                dataUrlsFull.push(dataURL)
+                                if (dataUrls.length === filesLen) {
+                                    context.setImages(dataUrls)
+                                    context.setImagesFull(dataUrlsFull)
+                                }
                             }
                         }
                     }
@@ -84,7 +98,7 @@ export const FrameSidebar = React.memo(() => {
             </div>
 
             <div ref={imageContainerRef} className="flex-1 mb-4 images-container relative">
-                <List images={context.images} onClick={handleClick} containerHeight={containerHeight} />
+                <List images={context.images} imagesFull={context.imagesFull} onClick={handleClick} containerHeight={containerHeight} />
             </div>
         </div>
     )

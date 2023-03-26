@@ -21,7 +21,10 @@ const drawImageOnCanvas = (canvas: fabric.Canvas, w: number, h: number, source: 
         const tempDiv = document.createElement('div')
         tempDiv.innerHTML = theDragImageStr
         const theDrageImageElem = tempDiv.querySelector('img') as HTMLImageElement
+        const imgURL = theDrageImageElem.dataset.url ?? ''
         const imgType = theDrageImageElem?.dataset.type ?? ''
+        const newImage = new Image()
+        newImage.src = imgURL
 
         if (imgType === 'sticker') {
             const stickerImg = new fabric.Image(theDrageImageElem)
@@ -32,7 +35,7 @@ const drawImageOnCanvas = (canvas: fabric.Canvas, w: number, h: number, source: 
 
         if (imgType === 'main') {
             canvas.clear()
-            const img = DrawImage(canvas, theDrageImageElem, w, h)
+            const img = DrawImage(canvas, newImage, w, h)
 
             mainImage = img
         }

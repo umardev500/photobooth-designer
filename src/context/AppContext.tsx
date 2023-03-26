@@ -29,6 +29,8 @@ export interface AppContextData {
     currentImage: number
     images: string[]
     setImages: React.Dispatch<React.SetStateAction<string[]>>
+    imagesFull: string[]
+    setImagesFull: React.Dispatch<React.SetStateAction<string[]>>
     currentPreview: number
     setCurrentPreview: React.Dispatch<React.SetStateAction<number>>
     overlayToggle: boolean
@@ -54,6 +56,7 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
     ])
     const [currentFilter, setCurrentFilter] = useState<number>(0)
     // const [images, setImages] = useState<string[]>(['sharp6.JPG'])
+    const [imagesFull, setImagesFull] = useState<string[]>([])
     const [images, setImages] = useState<string[]>([
         'photo.jpg',
         'sharp6.JPG',
@@ -74,6 +77,8 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
 
     const data = useMemo<AppContextData>(() => {
         return {
+            imagesFull,
+            setImagesFull,
             stickers,
             setStickers,
             overlayToggle,
