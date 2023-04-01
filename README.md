@@ -1,3 +1,6 @@
+## Requirements
+- Docker for windows https://docs.docker.com/desktop/install/windows-install/
+
 ## Instalation
 - yarn install
 - docker compose build
