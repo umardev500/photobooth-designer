@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  app:
+    container_name: ui
+    build: .
+    ports:
+      - 5173:5173
+      - 4000:4000
+    volumes:
+      - ./:/app
+    network_mode: pb
+    
