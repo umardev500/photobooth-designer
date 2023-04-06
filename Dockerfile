@@ -1,8 +1,10 @@
-FROM ubuntu:22.04
+FROM node:18
 
 WORKDIR /app
 
 COPY . .
+
+RUN yarn install
 
 RUN apt update && \
     apt install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
