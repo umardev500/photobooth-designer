@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . .
 
+RUN mkdir uploads compressed
+
 RUN yarn install
 
 RUN apt update
